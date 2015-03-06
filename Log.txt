@@ -1,0 +1,12 @@
+15/05/05
+-Updated readme to be more descriptive.
+-Uploaded invTypes.xls for ease of use.
+-Created TODO
+-SheetReader.hasMoreRows() is working
+-Added SheetReader.setSheet()
+-Initialized the Item class.
+
+15/05/04
+-Initialized the project.
+-Created SheetReader.
+-Created Driver.
