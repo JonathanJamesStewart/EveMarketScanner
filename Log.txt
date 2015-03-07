@@ -1,4 +1,14 @@
-15/05/05
+15/03/07
+-Added more parameters to Driver.
+-Sheetreader now reads the excel file correctly.
+	Very inflexible.
+-Added OpenSheet to SheetReader
+-Implemented getNextBatch in SheetReader
+-Expanded Item to be more robust. Can now print a summary of itself.
+-Init for ItemManager. Not using yet.
+
+
+15/03/05
 -Updated readme to be more descriptive.
 -Uploaded invTypes.xls for ease of use.
 -Created TODO
@@ -6,7 +16,7 @@
 -Added SheetReader.setSheet()
 -Initialized the Item class.
 
-15/05/04
+15/03/04
 -Initialized the project.
 -Created SheetReader.
 -Created Driver.
