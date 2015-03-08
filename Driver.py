@@ -2,6 +2,7 @@
 #Project: Eve Market Scanner
 
 from SheetReader import *
+from ItemManager import *
 
 #VARIABLES
 #Book path
@@ -25,18 +26,27 @@ salesTax = .009
 #DRIVER
 #Init utility classes
 sheetReader = SheetReader()
+itemManager = ItemManager(maxListSize)
 
 #Init parameters
 sheetReader.setBook(bookPath)
 sheetReader.setSheet(sheetNumber)
 
 #***TESTING***
-for i in range(1, 3):
-    count = 0
-    
-    itemList = sheetReader.getNextBatch(batchSize)
-    for item in itemList:
-        print(count, end="")
-        item.printShort()
-        count += 1
-        
+itemList = sheetReader.getNextBatch(batchSize)
+
+itemManager.addItems(itemList)
+
+itemManager.printList()
+
+
+##
+##for i in range(1, 3):
+##    count = 0
+##    
+##    itemList = sheetReader.getNextBatch(batchSize)
+##    for item in itemList:
+##        print(count, end="")
+##        item.printShort()
+##        count += 1
+##

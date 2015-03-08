@@ -12,14 +12,15 @@ class SheetReader:
         self.currentRow = 1
         self.items = []
 
+    #PRIVATE METHODS
     def __openSheet(self):
         book = xlrd.open_workbook(self.bookPath)
         sheet = book.sheet_by_index(self.sheetNumber)
 
         return sheet
-
+    
+    #PUBLIC METHODS
     #Returns the next collection of items
-    #***IMPLEMENT THIS METHOD***
     def getNextBatch(self, batchSize):
         #Reset items to be empty.
         self.items = []

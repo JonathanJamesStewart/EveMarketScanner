@@ -14,6 +14,12 @@ class Item:
         self.volume = 0
         self.volumeCount = 0
 
+    def __cmp__(self, other):
+        return cmp(self.iskPerHour, other.iskPerHour)
+
+    def __lt__(self, other):
+        return self.iskPerHour < other.iskPerHour
+
     #Prints full description. Formatting should be obvious.
     def printItem(self):
         print('Name: ' + self.name, end = '')

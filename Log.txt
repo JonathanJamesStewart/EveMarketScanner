@@ -1,3 +1,7 @@
+15/03/07.1
+-started implementing ItemManager. Utilizes bisect module.
+-Still not sure ItemManager is actually inserting in correct order.
+
 15/03/07
 -Added more parameters to Driver.
 -Sheetreader now reads the excel file correctly.
@@ -6,7 +10,6 @@
 -Implemented getNextBatch in SheetReader
 -Expanded Item to be more robust. Can now print a summary of itself.
 -Init for ItemManager. Not using yet.
-
 
 15/03/05
 -Updated readme to be more descriptive.
