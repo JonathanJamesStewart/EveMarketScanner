@@ -1,6 +1,8 @@
 #Author: Jonathan Stewart
 #Project: Eve Market Scanner
 
+from decimal import Decimal
+
 #Simple class for storage of item information.
 class Item:
 
@@ -19,6 +21,14 @@ class Item:
 
     def __lt__(self, other):
         return self.iskPerHour < other.iskPerHour
+
+    def updateValues(self):
+        if self.volumeCount != 0:
+            self.volume /= self.volumeCount
+
+        self.iskPerHour = (self.minSell - item.maxBuy) / 24
+
+        self.iskPerHour *= Decimal(item.volume)
 
     #Prints full description. Formatting should be obvious.
     def printItem(self):

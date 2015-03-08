@@ -1,3 +1,8 @@
+15/03/08
+-Implemented Query subclass. It appears eve-marketdata.com has stopped running.
+	-Will investigate further.
+-Added updateValues to Item. Now can calculate certain values by itself.
+
 15/03/07.1
 -started implementing ItemManager. Utilizes bisect module.
 -Still not sure ItemManager is actually inserting in correct order.

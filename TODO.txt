@@ -1,3 +1,11 @@
+15/03/08
+-Add commenting on Query and other classes.
+-Investigate eve-marketdata failure.
+-ItemManager
+	-Test to make sure existing functions actually work.
+-Finish item self-calculation.
+-Update exact method of profit calculation in README
+
 15/03/07.1
 -ItemManager
 	-Test to make sure existing functions actually work.
