@@ -4,6 +4,7 @@
 import urllib.request
 import xml.etree.ElementTree as ET
 import sys
+from decimal import Decimal
 
 class Query:
 
@@ -22,16 +23,19 @@ class Query:
         self.numDays = 0
 
     def __buildURL(self, items):
+        self.tempAddress1 = self.address1
+        self.tempAddress2 = self.address2
+        
         for item in items:
-            self.address1 = self.address1 + self.typeID + str(item.itemID) + '&'
-            self.address2 = self.address2 + str(item.itemID) + ','
-        self.address2 = self.address2[:len(self.address2) - 1]
+            self.tempAddress1 = self.tempAddress1 + self.typeID + str(item.itemID) + '&'
+            self.tempAddress2 = self.tempAddress2 + str(item.itemID) + ','
+        self.tempAddress2 = self.tempAddress2[:len(self.address2) - 1]
 
-        self.address1 += self.sys + str(self.systemID)
+        self.tempAddress1 += self.sys + str(self.systemID)
 
-        self.address2 += self.char_name + self.charName
-        self.address2 += self.regionIDs + str(self.regionID)
-        self.address2 += self.days + str(self.numDays)
+        self.tempAddress2 += self.char_name + self.charName
+        self.tempAddress2 += self.regionIDs + str(self.regionID)
+        self.tempAddress2 += self.days + str(self.numDays)
 
     def __extractFromAddress1(self, XMLResult, items):
         maxBuy = 0
@@ -69,20 +73,22 @@ class Query:
 
         while True:
             try:
-                f1 = urllib.request.urlopen(self.address1)
+                f1 = urllib.request.urlopen(self.tempAddress1)
                 break
             except:
-                print(self.address1)
-                sys.exit(self.address1)
+                print(self.tempAddress1)
+                sys.exit(self.tempAddress1)
                 pass
         itemsFromXML = f1.read()
+        
+        self.__extractFromAddress1(itemsFromXML, items)
         while True:
             try:
-                f2 = urllib.request.urlopen(self.address2)
+                f2 = urllib.request.urlopen(self.tempAddress2)
                 break
             except:
-                print(self.address2)
-                sys.exit(self.address2)
+                print(self.tempAddress2)
+                sys.exit(self.tempAddress2)
                 pass
         volumeFromXML = f2.read()
 

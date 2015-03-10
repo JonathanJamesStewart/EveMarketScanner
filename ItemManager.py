@@ -40,5 +40,5 @@ class ItemManager:
         count = 0
         for item in self.itemList:
             count += 1
-            print("{:,.0f}".format(count) + ' ', end='')
+            print(str(count) + '.\t', end = '')
             item.printShort()

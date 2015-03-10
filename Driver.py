@@ -19,11 +19,16 @@ maxPrice = 50000000
 maxListSize = 500
 batchSize = 100
 numDays = 10
+highMargin = 2
+lowMargin = .05
 
 #Character vars
 charName = 'Ared_Gaebril'
 brokerFee = .008
 salesTax = .009
+
+#Misc vars
+queryCount = 0
 
 #DRIVER
 #Init utility classes
@@ -41,12 +46,50 @@ siteQuery.setCharName(charName)
 siteQuery.setNumDays(numDays)
 
 #***TESTING***
-itemList = sheetReader.getNextBatch(batchSize)
+while sheetReader.hasMoreRows():
+    itemList = sheetReader.getNextBatch(batchSize)
 
-siteQuery.querySite(itemList)
+    siteQuery.querySite(itemList)
+    queryCount += 1
+    print('Queries made: ' + str(queryCount))
 
-for item in itemList:
-    item.updateValues()
+    for item in itemList:
+        #Adjust sell and buy for fees and taxes
+        item.minSell = Decimal(item.minSell) - (Decimal(item.minSell) * Decimal(brokerFee)) - (Decimal(item.minSell) * Decimal(salesTax))
+        item.maxBuy = Decimal(item.maxBuy) + (Decimal(item.maxBuy) * Decimal(brokerFee))
 
-itemManager.addItems(itemList)
-itemManager.printList()
+        item.updateValues()
+
+        #Remove it if the market is unreasonable
+        if (float(item.maxBuy) != 0):
+            if (float(item.minSell) / float(item.maxBuy)) > highMargin:
+                try:
+                    itemList.remove(item)
+                except:
+                    pass
+        #Remove it if the item is too expensive
+        if (item.maxBuy > maxPrice):
+            try:
+                itemList.remove(item)
+            except:
+                pass
+        #Remove if the profit margin is too small.
+        if (float(item.minSell) != 0):
+            if (float(item.maxBuy) / float(item.minSell)) > (1 - lowMargin):
+                try:
+                    itemList.remove(item)
+                except:
+                    pass
+##        else:
+##            self.removeItem(itemList, item)
+
+        #Remove if it is a blueprint
+        if 'Blueprint' in item.name:
+            try:
+                itemList.remove(item)
+            except:
+                pass
+
+    itemManager.addItems(itemList)
+
+itemManager.printList()    

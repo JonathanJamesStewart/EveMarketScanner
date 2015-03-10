@@ -14,7 +14,7 @@ class Item:
         self.itemID = itemID
         self.iskPerHour = 0
         self.volume = 0
-        self.volumeCount = 0
+        self.volumeCount = 1
 
     def __cmp__(self, other):
         return cmp(self.iskPerHour, other.iskPerHour)
@@ -26,9 +26,9 @@ class Item:
         if self.volumeCount != 0:
             self.volume /= self.volumeCount
 
-        self.iskPerHour = (self.minSell - item.maxBuy) / 24
+        self.iskPerHour = (self.minSell - self.maxBuy) / 24
 
-        self.iskPerHour *= Decimal(item.volume)
+        self.iskPerHour *= Decimal(self.volume)
 
     #Prints full description. Formatting should be obvious.
     def printItem(self):

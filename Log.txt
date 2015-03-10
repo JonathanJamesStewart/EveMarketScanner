@@ -1,3 +1,9 @@
+15/03/09
+-Finished driver class. Now coordinates the other classes correctly.
+-Adjusted how the itemManager prints it's list.
+-Eve-marketdata is now back up. Updated URL building. Now works correctly.
+-Testing. Looks to be working correctly.
+
 15/03/08
 -Implemented Query subclass. It appears eve-marketdata.com has stopped running.
 	-Will investigate further.

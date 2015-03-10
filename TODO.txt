@@ -1,3 +1,8 @@
+15/03/09
+-Update exact method of profit calculation in README
+-Commenting!
+-Items in the ItemManager are not updating their values.
+
 15/03/08
 -Add commenting on Query and other classes.
 -Investigate eve-marketdata failure.
