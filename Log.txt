@@ -1,3 +1,11 @@
+15/03/11
+-Added queryLimit in Driver.py which enables user to limit the number
+	of queries in order to shorten runtime for demo purposes.
+-Items in ItemManager are now being ranked correctly and values are
+	updating correctly.
+-Added appropriate commenting throughout.
+-This project now works correctly.
+
 15/03/09
 -Finished driver class. Now coordinates the other classes correctly.
 -Adjusted how the itemManager prints it's list.

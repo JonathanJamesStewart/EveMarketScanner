@@ -16,18 +16,25 @@ class Item:
         self.volume = 0
         self.volumeCount = 1
 
+    #Compare function.
     def __cmp__(self, other):
         return cmp(self.iskPerHour, other.iskPerHour)
 
+    #Compare function.
     def __lt__(self, other):
-        return self.iskPerHour < other.iskPerHour
+        return self.iskPerHour > other.iskPerHour
 
+    #Auto updates values that it can.
     def updateValues(self):
+        #Find the average volume
         if self.volumeCount != 0:
             self.volume /= self.volumeCount
 
+        #Calculate the isk per hour by calculating the difference
+            #margin / 24
         self.iskPerHour = (self.minSell - self.maxBuy) / 24
 
+        #Multiply the individual isk/hr by the volume sold.
         self.iskPerHour *= Decimal(self.volume)
 
     #Prints full description. Formatting should be obvious.
@@ -43,7 +50,7 @@ class Item:
     #iskPerHour \t %profit \t name
     def printShort(self):
         print("{:,.0f}".format(self.iskPerHour), end = '')
-        if (int(self.maxBuy) != 0):
+        if (int(self.maxBuy) != 0 and int(self.minSell != 0)):
             temp = 1 - (float(self.maxBuy) / float(self.minSell))
-            print("\t{:.4f}".format(temp), end = '')
+            print("\t{:.0f}".format(temp * 100) + '%', end = '')
         print('\t' + self.name)

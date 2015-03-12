@@ -8,3 +8,5 @@ deemed to be most profitable.
 
 This script makes 109 URL queries to the sites it gathers data from.
 It takes a few minutes to run so go grab some coffee or something.
+You can easily limit the number of URL queries made by changing queryLimit
+in Driver.py

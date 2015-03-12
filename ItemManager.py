@@ -19,9 +19,11 @@ class ItemManager:
 
     #Performs a bisect insert
     def __binInsert(self, item):
+        #If the list is empty initialize it.
         if len(self.itemList) < 1:
             self.itemList.insert(0, item)
             return 0
+        #Else find the insertion point and insert it.
         else:
             insertionPoint = bisect.bisect_left(self.itemList, item)
             self.itemList.insert(insertionPoint, item)

@@ -1,3 +1,6 @@
+15/03/11
+-I consider this project finished.
+
 15/03/09
 -Update exact method of profit calculation in README
 -Commenting!
